@@ -24,6 +24,4 @@ refrances link:
 Formik:
 https://github.com/jaredpalmer/formik
 
-Ant Design:
-https://ant.design/
 
