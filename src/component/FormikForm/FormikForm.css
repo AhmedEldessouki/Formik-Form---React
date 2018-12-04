@@ -1,1 +1,5 @@
-/* No CSS *//*# sourceMappingURL=FormikForm.css.map */
+.FormikForm .testtest, .FormikForm * {
+  color: red !important;
+  font-size: 10px;
+}
+/*# sourceMappingURL=FormikForm.css.map */
