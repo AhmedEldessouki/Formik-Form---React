@@ -10,19 +10,22 @@ $red: #f00;
     width: 500px;
     input {
       padding: 5px;
-      margin: 10px 0 5px 0;
       width: 210px;
+      height: 20px;
     }
-    .field-container{
+    .field-container {
       display: block;
       text-align: left;
-      margin-bottom: 5px;
+      margin: 10px 0;
+      span {
+        margin-right: 10px; // font-size: 18px;
+      }
     }
     .double-container {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      input{
+      input {
         display: flex;
         flex-direction: column;
       }
@@ -31,7 +34,7 @@ $red: #f00;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      label{
+      label {
         margin-right: 85px;
       }
       input {
@@ -39,12 +42,12 @@ $red: #f00;
         display: inline-block;
         margin: 5px 6px;
       }
-      label{
+      label {
         font-size: 16px;
         font-weight: 300;
       }
     }
-    .address{
+    .address {
       width: 450px;
     }
     .error-message {
@@ -54,6 +57,8 @@ $red: #f00;
       margin-top: 0;
       margin-bottom: auto;
     }
-
+    button {
+      height: 36px;
+    }
   }
 }

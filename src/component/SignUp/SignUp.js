@@ -24,20 +24,33 @@ class MySignUp extends Component {
               ) : null}
             </div>
           </div>
+          <div className="field-container">
+            <label>
+              <span>
+                Day Of Birth
+              </span>
+              <Field name="birthdate" type="date" />
+            </label>
+            {errors.birthdate && touched.birthdate ? (
+              <div className="error-message">{errors.birthdate}</div>
+            ) : null}
+          </div>
           <div className="triple-container">
-            <label>
-              <Field name="gender" type="radio" value="male" />
-              Male
+            <div className="field-container">
+              <label>
+                <Field name="gender" type="radio" value="male" />
+                Male
             </label>
-            <label>
-              <Field name="gender" type="radio" value="female" />
-              Female
+              <label>
+                <Field name="gender" type="radio" value="female" />
+                Female
             </label>
-            <label>
-              <Field name="gender" type="radio" value="other" />
-              Transgender
+              <label>
+                <Field name="gender" type="radio" value="other" />
+                Transgender
             </label>
-            {errors.gender && touched.gender ? <div className="error-message">{errors.gender}</div> : null}
+              {errors.gender && touched.gender ? <div className="error-message">{errors.gender}</div> : null}
+            </div>
           </div>
           <div className="field-container">
             <Field name="email" type="email" placeholder="Email Address" />
@@ -58,10 +71,10 @@ class MySignUp extends Component {
             {errors.phoneNumber && touched.phoneNumber ? <div className="error-message">{errors.phoneNumber}</div> : null}
           </div>
           <div className="field-container">
-            <Field name="homeAddress" placeholder="Home Address" className="address"/>
+            <Field name="homeAddress" placeholder="Home Address" className="address" />
           </div>
           <div className="field-container">
-            <Field name="workAddress" placeholder="Work Address" className="address"/>
+            <Field name="workAddress" placeholder="Work Address" className="address" />
           </div>
 
           <button type="submit" disabled={isSubmitting} >Submit</button>
@@ -72,7 +85,8 @@ class MySignUp extends Component {
 }
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-
+const min = '1950-01-01';
+const max = '2000-1-1';
 const SignupSchema = withFormik({
   validationSchema: Yup.object().shape({
     firstName: Yup.string()
@@ -97,8 +111,12 @@ const SignupSchema = withFormik({
       .required('Confirm Password is required'),
     phoneNumber: Yup.string()
       .min(11, 'Too Short!')
-      .max(13,'Too Long!')
+      .max(13, 'Too Long!')
       .matches(phoneRegExp, 'Phone number is not valid'),
+    birthdate: Yup.date()
+      .default(new Date(max))
+      .min(new Date(min))
+      .max(new Date(max), 'You Have To Be Older Than 18'),
   }),
   enableReinitialize: true,
   mapPropsToValues: props => ({
@@ -109,8 +127,9 @@ const SignupSchema = withFormik({
     password: '',
     confirmPassword: '',
     phoneNumber: '',
-    homeAddress:'',
-    workAddress:'',
+    homeAddress: '',
+    workAddress: '',
+    birthdate: ''
   }),
   mapValuesToPayload: x => x,
   handleSubmit: (values, bag) => {
