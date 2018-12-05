@@ -43,7 +43,6 @@ const SignupSchema = withFormik({
       .email('Invalid email')
       .required('Required'),
   }),
-  enableReinitialize: true,
   mapPropsToValues: props => ({
     firstName: '',
     lastName: '',
