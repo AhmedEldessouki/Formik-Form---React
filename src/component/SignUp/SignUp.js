@@ -56,7 +56,6 @@ class MySignUp extends Component {
             <Field name="nationality" component="select" >
               {NATIONALITY.map((function(name, i){return <option key={i}>{name}</option>}))}
             </Field>
-            {errors.email && touched.email ? <div className="error-message">{errors.email}</div> : null}
           </div>
           <div className="field-container">
             <Field name="email" type="email" placeholder="Email Address" />
